@@ -7,7 +7,16 @@ class App extends Component{
   state ={
     items:[]
 }
+deleteItem = (id)=>{
+ let items = this.state.items
+ let i =items.findIndex(item => item.id=== id)
+ items.splice(i,1)
+ this.setState({
+   items
+ })
+}
 addItem = (item) =>{
+    item.id = Math.random()
     let items = this.state.items;
     items.push(item);
     this.setState({items})
@@ -18,7 +27,7 @@ addItem = (item) =>{
       <div className="App">
 
         <Items addItem={this.addItem}/>
-        <List items={this.state.items}/>
+        <List deleteItem={this.deleteItem} items={this.state.items}/>
       </div>
   );
 }
